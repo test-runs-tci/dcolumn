@@ -97,7 +97,7 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         log.debug("POST url: %s", url)
         msg = "response status: {}, should be 200, request: {} ".format(
             response.status_code, response.request)
-        self.assertEquals(response.status_code, 200, msg)
+        self.assertEqual(response.status_code, 200, msg)
         self.assertTrue(self._has_error(response), msg)
         self._test_errors(response, tests={
             'column_collection': "A ColumnCollection needs to "
@@ -116,7 +116,7 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         log.debug("POST url: %s", url)
         msg = ("response status: {}, should be 302 redirected to login."
                ).format(response.status_code)
-        self.assertEquals(response.status_code, 302, msg)
+        self.assertEqual(response.status_code, 302, msg)
 
     def test_detail(self):
         """
@@ -131,7 +131,7 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         response = self.client.get(url)
         msg = "response status: {}, should be 200, request: {}".format(
             response.status_code, response.request)
-        self.assertEquals(response.status_code, 200, msg)
+        self.assertEqual(response.status_code, 200, msg)
         # We only set one field the author--check if it's in the relations.
         author_relation = response.context['relations'][self.dc1.pk]
         msg = "author_relation: {}".format(author_relation)
@@ -153,11 +153,11 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         log.debug("POST url: %s, location: %s", url, response.url)
         msg = "response status: {}, should be 302, request: {}".format(
             response.status_code, response.request)
-        self.assertEquals(response.status_code, 302, msg)
+        self.assertEqual(response.status_code, 302, msg)
         # Check that we have a record.
         response = self.client.get(response.url)
         msg = "response status: {}, should be 200".format(response.status_code)
-        self.assertEquals(response.status_code, 200, msg)
+        self.assertEqual(response.status_code, 200, msg)
         # Check that we have an author.
         msg = "author: '{}' should be in the content '{}'.".format(
             self.author.name, response.content)
@@ -182,7 +182,7 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         log.debug("Create POST url: %s, location: %s", url, response.url)
         msg = "response status: {}, should be 302, request: {}".format(
             response.status_code, response.request)
-        self.assertEquals(response.status_code, 302, msg)
+        self.assertEqual(response.status_code, 302, msg)
         # Get the record.
         response = self.client.get(response.url)
         pk = response.context_data.get('object').pk
@@ -193,12 +193,12 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         response = self.client.post(url_update, data)
         log.debug("Update POST url: %s", url_update)
         msg = "response status: {}, should be 302".format(response.status_code)
-        self.assertEquals(response.status_code, 302, msg)
+        self.assertEqual(response.status_code, 302, msg)
         # Get the record.
         response = self.client.get(response.url)
         log.debug("GET url: %s, context: %s", url, response.context_data)
         msg = "response status: {}, should be 200".format(response.status_code)
-        self.assertEquals(response.status_code, 200, msg)
+        self.assertEqual(response.status_code, 200, msg)
         test_text = response.context_data.get('object').get_key_value(
             'test_text')
         msg = "test_text: '{}' should match '{}'.".format(
@@ -220,11 +220,11 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         # Test the BOOLEAN type with a numeric value.
         response = self.client.post(url, data)
         msg = "response status: {}, should be 302".format(response.status_code)
-        self.assertEquals(response.status_code, 302, msg)
+        self.assertEqual(response.status_code, 302, msg)
         # Get the page
         response = self.client.get(response.url)
         msg = "response status: {}, should be 200".format(response.status_code)
-        self.assertEquals(response.status_code, 200, msg)
+        self.assertEqual(response.status_code, 200, msg)
         relations = response.context_data.get('relations')
         value = relations.get(self.dc0.pk).get('value')
         msg = "value: {}, test_bool: {}, relations: {}".format(
@@ -234,14 +234,14 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         data['test_bool'] = 'False'
         response = self.client.post(url, data)
         msg = "response status: {}, should be 302".format(response.status_code)
-        self.assertEquals(response.status_code, 302, msg)
+        self.assertEqual(response.status_code, 302, msg)
         # Get the page
         response = self.client.get(response.url)
         relations = response.context_data.get('relations')
         value = relations.get(self.dc0.pk).get('value')
         msg = "response status: {}, should be 200, relations: {}".format(
             response.status_code, relations)
-        self.assertEquals(response.status_code, 200, msg)
+        self.assertEqual(response.status_code, 200, msg)
         self.assertFalse(value, msg)
 
     def test_validate_choice_relations(self):
@@ -257,7 +257,7 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         response = self.client.post(url, data=data)
         log.debug("POST url: %s", url)
         msg = "response status: {}, should be 200".format(response.status_code)
-        self.assertEquals(response.status_code, 200, msg)
+        self.assertEqual(response.status_code, 200, msg)
         msg = "Should have errors: {}".format(response.context_data.get(
             'form').errors)
         self.assertTrue(self._has_error(response), msg)
@@ -268,7 +268,7 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         data['test_choice'] = 999999
         response = self.client.post(url, data=data)
         msg = "response status: {}, should be 200".format(response.status_code)
-        self.assertEquals(response.status_code, 200, msg)
+        self.assertEqual(response.status_code, 200, msg)
         msg = "Should have errors: {}".format(response.context_data.get(
             'form').errors)
         self.assertTrue(self._has_error(response), msg)
@@ -280,11 +280,11 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         response = self.client.post(url, data=data)
         log.debug("POST url: %s, location: %s", url, response.url)
         msg = "response status: {}, should be 302".format(response.status_code)
-        self.assertEquals(response.status_code, 302, msg)
+        self.assertEqual(response.status_code, 302, msg)
         # Get the page
         response = self.client.get(response.url)
         msg = "response status: {}, should be 200".format(response.status_code)
-        self.assertEquals(response.status_code, 200, msg)
+        self.assertEqual(response.status_code, 200, msg)
 
     def test_validate_pseudo_choice_relations(self):
         """
@@ -301,7 +301,7 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         response = self.client.post(url, data=data)
         log.debug("POST url: %s", url)
         msg = "response status: {}, should be 200".format(response.status_code)
-        self.assertEquals(response.status_code, 200, msg)
+        self.assertEqual(response.status_code, 200, msg)
         msg = "Should have errors: {}".format(response.context_data.get(
             'form').errors)
         self.assertTrue(self._has_error(response), msg)
@@ -313,11 +313,11 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         response = self.client.post(url, data=data)
         log.debug("POST url: %s, location: %s", url, response.url)
         msg = "response status: {}, should be 302".format(response.status_code)
-        self.assertEquals(response.status_code, 302, msg)
+        self.assertEqual(response.status_code, 302, msg)
         # Get the page
         response = self.client.get(response.url)
         msg = "response status: {}, should be 200".format(response.status_code)
-        self.assertEquals(response.status_code, 200, msg)
+        self.assertEqual(response.status_code, 200, msg)
 
     def test_validate_stored_relations(self):
         """
@@ -334,7 +334,7 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         response = self.client.post(url, data=data)
         log.debug("POST url: %s", url)
         msg = "response status: {}, should be 200".format(response.status_code)
-        self.assertEquals(response.status_code, 200, msg)
+        self.assertEqual(response.status_code, 200, msg)
         msg = "Should have errors: {}".format(response.context_data.get(
             'form').errors)
         self.assertTrue(self._has_error(response), msg)
@@ -346,11 +346,11 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         response = self.client.post(url, data=data)
         log.debug("POST url: %s, location: %s", url, response.url)
         msg = "response status: {}, should be 302".format(response.status_code)
-        self.assertEquals(response.status_code, 302, msg)
+        self.assertEqual(response.status_code, 302, msg)
         # Get the page
         response = self.client.get(response.url)
         msg = "response status: {}, should be 200".format(response.status_code)
-        self.assertEquals(response.status_code, 200, msg)
+        self.assertEqual(response.status_code, 200, msg)
 
     def test_validate_data(self):
         """
@@ -376,11 +376,11 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         response = self.client.post(url, data=data)
         log.debug("POST url: %s, location: %s", url, response.url)
         msg = "response status: {}, should be 302".format(response.status_code)
-        self.assertEquals(response.status_code, 302, msg)
+        self.assertEqual(response.status_code, 302, msg)
         # Get the page
         response = self.client.get(response.url)
         msg = "response status: {}, should be 200".format(response.status_code)
-        self.assertEquals(response.status_code, 200, msg)
+        self.assertEqual(response.status_code, 200, msg)
 
     def test_validate_time(self):
         """
@@ -406,11 +406,11 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         response = self.client.post(url, data=data)
         log.debug("POST url: %s, location: %s", url, response.url)
         msg = "response status: {}, should be 302".format(response.status_code)
-        self.assertEquals(response.status_code, 302, msg)
+        self.assertEqual(response.status_code, 302, msg)
         # Get the page
         response = self.client.get(response.url)
         msg = "response status: {}, should be 200".format(response.status_code)
-        self.assertEquals(response.status_code, 200, msg)
+        self.assertEqual(response.status_code, 200, msg)
 
     def test_validate_datetime(self):
         """
@@ -436,11 +436,11 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         response = self.client.post(url, data=data)
         log.debug("POST url: %s, location: %s", url, response.url)
         msg = "response status: {}, should be 302".format(response.status_code)
-        self.assertEquals(response.status_code, 302, msg)
+        self.assertEqual(response.status_code, 302, msg)
         # Get the page
         response = self.client.get(response.url)
         msg = "response status: {}, should be 200".format(response.status_code)
-        self.assertEquals(response.status_code, 200, msg)
+        self.assertEqual(response.status_code, 200, msg)
 
     def test_validate_float(self):
         """
@@ -466,11 +466,11 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         response = self.client.post(url, data=data)
         log.debug("POST url: %s, location: %s", url, response.url)
         msg = "response status: {}, should be 302".format(response.status_code)
-        self.assertEquals(response.status_code, 302, msg)
+        self.assertEqual(response.status_code, 302, msg)
         # Get the page
         response = self.client.get(response.url)
         msg = "response status: {}, should be 200".format(response.status_code)
-        self.assertEquals(response.status_code, 200, msg)
+        self.assertEqual(response.status_code, 200, msg)
 
     def test_validate_integer(self):
         """
@@ -496,11 +496,11 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         response = self.client.post(url, data=data)
         log.debug("POST url: %s, location: %s", url, response.url)
         msg = "response status: {}, should be 302".format(response.status_code)
-        self.assertEquals(response.status_code, 302, msg)
+        self.assertEqual(response.status_code, 302, msg)
         # Get the page
         response = self.client.get(response.url)
         msg = "response status: {}, should be 200".format(response.status_code)
-        self.assertEquals(response.status_code, 200, msg)
+        self.assertEqual(response.status_code, 200, msg)
 
     def test_validate_text(self):
         """
@@ -526,11 +526,11 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         response = self.client.post(url, data=data)
         log.debug("POST url: %s, location: %s", url, response.url)
         msg = "response status: {}, should be 302".format(response.status_code)
-        self.assertEquals(response.status_code, 302, msg)
+        self.assertEqual(response.status_code, 302, msg)
         # Get the page
         response = self.client.get(response.url)
         msg = "response status: {}, should be 200".format(response.status_code)
-        self.assertEquals(response.status_code, 200, msg)
+        self.assertEqual(response.status_code, 200, msg)
 
     def test_validate_text_block(self):
         """
@@ -548,7 +548,7 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
             response = self.client.post(url, data=data)
         except Exception as e:
             from dcolumn.dcolumns.models import KeyValue
-            print(f"POOP-0--all: {KeyValue.objects.all()}")
+            #print(f"POOP-0--all: {KeyValue.objects.all()}")
             #POOP-0--all: <QuerySet [<KeyValue: Web Site>, <KeyValue: Description>, <KeyValue: Start Date>, <KeyValue: Start Time>]>
             return
 
@@ -564,8 +564,8 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         response = self.client.post(url, data=data)
         log.debug("POST url: %s, location: %s", url, response.url)
         msg = "response status: {}, should be 302".format(response.status_code)
-        self.assertEquals(response.status_code, 302, msg)
+        self.assertEqual(response.status_code, 302, msg)
         # Get the page
         response = self.client.get(response.url)
         msg = "response status: {}, should be 200".format(response.status_code)
-        self.assertEquals(response.status_code, 200, msg)
+        self.assertEqual(response.status_code, 200, msg)

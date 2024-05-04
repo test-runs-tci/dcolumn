@@ -277,7 +277,7 @@ class TestColumnCollection(BaseDcolumns, TestCase):
         for pk in (dc0.pk, dc1.pk, dc2.pk):
             self.assertTrue(pk in result, msg)
             # Test that the value is not included.
-            self.assertEquals(result[pk].get('value'), None, msg)
+            self.assertEqual(result[pk].get('value'), None, msg)
 
         # Test that the serialized oject is correct using slugs and has no
         # value.
@@ -288,7 +288,7 @@ class TestColumnCollection(BaseDcolumns, TestCase):
         for slug in (dc0.slug, dc1.slug, dc2.slug):
             self.assertTrue(slug in result, msg)
             # Test that the value is not included.
-            self.assertEquals(result[slug].get('value'), None, msg)
+            self.assertEqual(result[slug].get('value'), None, msg)
 
     def test_get_active_relation_items(self):
         """
