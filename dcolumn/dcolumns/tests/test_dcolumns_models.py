@@ -5,9 +5,10 @@
 # WARNING: These unittests can only be run from within the original test
 #          framework from https://github.com/cnobile2012/dcolumn.
 #
-import datetime
+
+from datetime import (
+    datetime, timedelta, timezone, date as dt_date, time as dt_time)
 import dateutil
-import pytz
 
 from django.core.exceptions import ValidationError
 from django.test import TestCase
@@ -558,7 +559,7 @@ class TestCollectionBase(BaseDcolumns, TestCase):
         book, b_cc, b_values = self._create_book_objects(
             author=author, promotion=promotion, language=language,
             extra_dcs=[dc0, dc1, dc2, dc3, dc4, dc5, dc6, dc7])
-        value = datetime.datetime.now(pytz.utc).isoformat()
+        value = datetime.now(timezone.utc).isoformat()
         kv0 = self._create_key_value_record(book, dc0, value)
         b_values[dc0.slug] = dateutil.parser.parse(kv0.value)
         value = 'FALSE'
@@ -725,7 +726,7 @@ class TestCollectionBase(BaseDcolumns, TestCase):
         value = 0
         kv0 = self._create_key_value_record(book, dc0, value)
         b_values[dc0.slug] = kv0.value
-        value = datetime.datetime.now(pytz.utc).isoformat()
+        value = datetime.now(timezone.utc).isoformat()
         kv1 = self._create_key_value_record(book, dc1, value)
         b_values[dc1.slug] = kv1.value
         value = 'FALSE'
@@ -813,9 +814,9 @@ class TestCollectionBase(BaseDcolumns, TestCase):
          new_promotion, language) = self._create_test_objects()
         # Test TIME
         slug = 'start_time'
-        dt = datetime.datetime.now(pytz.utc)
-        time = datetime.time(hour=dt.hour, minute=dt.minute, second=dt.second,
-                             microsecond=dt.microsecond, tzinfo=dt.tzinfo)
+        dt = datetime.now(timezone.utc)
+        time = dt_time(hour=dt.hour, minute=dt.minute, second=dt.second,
+                       microsecond=dt.microsecond, tzinfo=dt.tzinfo)
         promotion.set_key_value(slug, time)
         found_value = promotion.get_key_value(slug)
         msg = "Initial value: {}, found_value: {}, new_time: {}".format(
@@ -832,7 +833,7 @@ class TestCollectionBase(BaseDcolumns, TestCase):
          new_promotion, language) = self._create_test_objects()
         # Test DATE with object
         slug = 'start_date'
-        date = datetime.date.today() + datetime.timedelta(days=1)
+        date = dt_date.today() + timedelta(days=1)
         promotion.set_key_value(slug, date)
         found_value = promotion.get_key_value(slug)
         msg = "Initial value: {}, found_value: {}, new_date: {}".format(
@@ -842,7 +843,7 @@ class TestCollectionBase(BaseDcolumns, TestCase):
         slug = 'start_date'
         date = '2015-01-01'
         dt = dateutil.parser.parse(date)
-        parsed_date = datetime.date(year=dt.year, month=dt.month, day=dt.day)
+        parsed_date = dt_date(year=dt.year, month=dt.month, day=dt.day)
         promotion.set_key_value(slug, date)
         found_value = promotion.get_key_value(slug)
         msg = "Initial value: {}, found_value: {}, new_date: {}".format(
@@ -872,7 +873,7 @@ class TestCollectionBase(BaseDcolumns, TestCase):
         with self.assertRaises(ValueError) as cm:
             book.set_key_value(slug, 2000)
         # Test DATETIME
-        dt = datetime.datetime.now(pytz.utc)
+        dt = datetime.now(timezone.utc)
         book.set_key_value(slug, dt)
         found_value = book.get_key_value(slug)
         msg = "Initial value: {}, found_value: {}, new_datetime: {}".format(

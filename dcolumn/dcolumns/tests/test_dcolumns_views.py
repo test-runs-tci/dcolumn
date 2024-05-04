@@ -6,8 +6,7 @@
 #          framework from https://github.com/cnobile2012/dcolumn.
 #
 
-import datetime
-import pytz
+from datetime import datetime, timezone
 import dateutil
 import json
 
@@ -83,7 +82,7 @@ class TestCollectionAJAXView(BaseDcolumns, TestCase):
         book, b_cc, b_values = self._create_book_objects(
             author=author, promotion=promotion, language=language,
             extra_dcs=[dc0, dc1, dc2, dc3])
-        value = datetime.datetime.now(pytz.utc).isoformat()
+        value = datetime.now(timezone.utc).isoformat()
         kv0 = self._create_key_value_record(book, dc0, value)
         b_values[dc0.slug] = dateutil.parser.parse(kv0.value)
         value = 'FALSE'

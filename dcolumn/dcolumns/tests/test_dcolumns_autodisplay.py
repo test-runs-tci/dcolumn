@@ -6,9 +6,8 @@
 #          framework from https://github.com/cnobile2012/dcolumn.
 #
 
-import datetime
+from datetime import datetime, timezone, time as dt_time
 import io
-import pytz
 
 from django.test import TestCase
 from django.template import (
@@ -382,7 +381,7 @@ class TestAutoDisplay(BaseDcolumns, TestCase):
             "Date & Time", DynamicColumn.DATETIME, 'promotion_top', 6)
         promotion, p_cc, p_values = self._create_promotion_objects(
             extra_dcs=[dc0])
-        value = datetime.datetime.now(pytz.utc).isoformat().replace('T', ' ')
+        value = datetime.now(timezone.utc).isoformat().replace('T', ' ')
         kv0 = self._create_key_value_record(promotion, dc0, value)
         p_values[dc0.slug] = kv0.value
         # Execute the template tag and test.
@@ -403,7 +402,7 @@ class TestAutoDisplay(BaseDcolumns, TestCase):
             "Date & Time", DynamicColumn.DATETIME, 'promotion_top', 6)
         promotion, p_cc, p_values = self._create_promotion_objects(
             extra_dcs=[dc0])
-        value = datetime.datetime.now(pytz.utc).isoformat().replace('T', ' ')
+        value = datetime.now(timezone.utc).isoformat().replace('T', ' ')
         kv0 = self._create_key_value_record(promotion, dc0, value)
         p_values[dc0.slug] = kv0.value
         # Execute the template tag and test.
@@ -763,7 +762,7 @@ class TestSingleDisplay(BaseDcolumns, TestCase):
             "Date & Time", DynamicColumn.DATETIME, 'promotion_top', 6)
         promotion, p_cc, p_values = self._create_promotion_objects(
             extra_dcs=[dc0])
-        value = datetime.datetime.now(pytz.utc).isoformat()
+        value = datetime.now(timezone.utc).isoformat()
         kv0 = self._create_key_value_record(promotion, dc0, value)
         p_values[dc0.slug] = kv0.value
         # Execute the template tag and test.
@@ -847,9 +846,9 @@ class TestSingleDisplay(BaseDcolumns, TestCase):
             "Now", DynamicColumn.TIME, 'book_top', 2)
         book, b_cc, b_values = self._create_book_objects(extra_dcs=[dc0])
         # Set value
-        dt = datetime.datetime.now(tz=pytz.utc)
-        value = datetime.time(hour=dt.hour, minute=dt.minute, second=dt.second,
-                              microsecond=dt.microsecond, tzinfo=dt.tzinfo)
+        dt = datetime.now(tz=timezone.utc)
+        value = dt_time(hour=dt.hour, minute=dt.minute, second=dt.second,
+                        microsecond=dt.microsecond, tzinfo=dt.tzinfo)
         book.set_key_value('now', value)
         b_values['now'] = value
         # Execute the template tag and test.

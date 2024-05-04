@@ -3,8 +3,7 @@
 # dcolumn/dcolumns/tests/base_tests.py
 #
 
-import datetime
-import pytz
+from datetime import datetime, timezone, date as dt_date, time as dt_time
 import json
 
 from django.contrib.auth import get_user_model
@@ -23,7 +22,7 @@ class BaseDcolumns(object):
     _TEST_PASSWORD = 'TestPassword_007'
 
     def __init__(self, name):
-        super(BaseDcolumns, self).__init__(name)
+        super().__init__(name)
         self.user = None
         self.manager = DynamicColumnManager()
         self.choice2index = dict(
@@ -167,12 +166,12 @@ class BaseDcolumns(object):
         value = "Everything sale."
         dc0_slug = 'description'
         promotion.set_key_value(dc0_slug, value)
-        value = datetime.date.today()
+        value = dt_date.today()
         dc1_slug = 'start_date'
         promotion.set_key_value(dc1_slug, value)
-        dt = datetime.datetime.now(pytz.utc)
-        value = datetime.time(hour=dt.hour, minute=dt.minute, second=dt.second,
-                              microsecond=dt.microsecond, tzinfo=dt.tzinfo)
+        dt = datetime.now(timezone.utc)
+        value = dt_time(hour=dt.hour, minute=dt.minute, second=dt.second,
+                        microsecond=dt.microsecond, tzinfo=dt.tzinfo)
         dc2_slug = 'start_time'
         promotion.set_key_value(dc2_slug, value)
         return promotion, cc, {dc0.slug: promotion.get_key_value(dc0_slug),
