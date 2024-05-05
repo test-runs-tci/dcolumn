@@ -18,7 +18,7 @@ __all__ = ('ChoiceManagerImplementation', 'create_field_name',)
 #
 # ChoiceManagerImplementation
 #
-class ChoiceManagerImplementation(object):
+class ChoiceManagerImplementation:
     """
     Manditory methods that must be defined in both choice models and Django
     models.

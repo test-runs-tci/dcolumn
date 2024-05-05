@@ -17,7 +17,7 @@ from ..models import DynamicColumn, ColumnCollection, KeyValue
 User = get_user_model()
 
 
-class BaseDcolumns(object):
+class BaseDcolumns:
     _TEST_USERNAME = 'TestUser'
     _TEST_PASSWORD = 'TestPassword_007'
 

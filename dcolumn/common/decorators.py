@@ -43,7 +43,7 @@ def dcolumn_login_required(function=None,
 #
 # InspectChoice
 #
-class InspectChoice(object):
+class InspectChoice:
     """
     This class does introspection on a non-model ``CHOICE`` object and
     supplies a decorator for the choice manager mixin. It should not be

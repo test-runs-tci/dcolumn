@@ -190,7 +190,7 @@ class BaseChoiceManager(InspectChoice, ChoiceManagerImplementation):
         return choices
 
 
-class BaseChoice(object):
+class BaseChoice:
     """
     We need a base class for all Choice types so we can dynamically find
     them.

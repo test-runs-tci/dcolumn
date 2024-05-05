@@ -18,7 +18,7 @@ from django.db.models.query import QuerySet
 log = logging.getLogger('dcolumns.dcolumns.manager')
 
 
-class DynamicColumnManager(object):
+class DynamicColumnManager:
     """
     This class manages the dynamic columns.
     """

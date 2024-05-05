@@ -22,7 +22,7 @@ from .manager import dcolumn_manager
 log = logging.getLogger('dcolumns.dcolumns.views')
 
 
-class ContextDataMixin(object):
+class ContextDataMixin:
     """
     Mixin for context data.
     """

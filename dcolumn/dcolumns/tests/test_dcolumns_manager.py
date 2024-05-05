@@ -36,7 +36,7 @@ class CountryManager(BaseChoiceManager):
         super(CountryManager, self).__init__()
 
 
-class Country(object):
+class Country:
     pk = 0
     name = ''
     language = ''
@@ -48,7 +48,7 @@ class Country(object):
 
 
 # Invalid choice model.
-class InvalidChoice(object):
+class InvalidChoice:
     pass
 
 

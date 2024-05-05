@@ -264,7 +264,7 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
         self._test_errors(response, tests={
             'test_choice': "This field is required.",
             })
-        # Try to create a record with an invalid authod PK.
+        # Try to create a record with an invalid author PK.
         data['test_choice'] = 999999
         response = self.client.post(url, data=data)
         msg = "response status: {}, should be 200".format(response.status_code)
