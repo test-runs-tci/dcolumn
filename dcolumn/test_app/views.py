@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # dcolumn/test_app/views.py
 #
@@ -64,7 +65,7 @@ class TestBookDetailView(LoginRequiredMixin,
         """
         Get context data for the KeyValue objects.
         """
-        context = super(TestBookDetailView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         # Create actions if any.
         book = kwargs.get('object')
         pk = book and book.id or 0

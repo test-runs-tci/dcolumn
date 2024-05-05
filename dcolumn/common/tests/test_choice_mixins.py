@@ -19,7 +19,7 @@ class TestSingleFieldChoiceManager(BaseChoiceManager):
     FIELD_LIST = ('pk', 'name',)
 
     def __init__(self):
-        super(TestSingleFieldChoiceManager, self).__init__()
+        super().__init__()
 
 class TestSingleFieldChoice:
     pk = 0
@@ -36,7 +36,7 @@ class TestMultipleFieldChoiceManager(BaseChoiceManager):
     FIELD_LIST = ('pk', 'name', 'version',)
 
     def __init__(self):
-        super(TestMultipleFieldChoiceManager, self).__init__()
+        super().__init__()
 
 class TestMultipleFieldChoice:
     pk = 0
@@ -49,7 +49,7 @@ class TestMultipleFieldChoice:
 class TestChoiceMixins(TestCase):
 
     def __init__(self, name):
-        super(TestChoiceMixins, self).__init__(name)
+        super().__init__(name)
 
     def test_constructor_VALUES(self):
         """
@@ -61,7 +61,7 @@ class TestChoiceMixins(TestCase):
             class TestMissingVALUESChoiceManager(BaseChoiceManager):
 
                 def __init__(self):
-                    super(TestMissingVALUESChoiceManager, self).__init__()
+                    super().__init__()
 
             class TestMissingVALUESChoice:
                 pk = 0
@@ -80,7 +80,7 @@ class TestChoiceMixins(TestCase):
                 VALUES = ('Bad', 'Worse')
 
                 def __init__(self):
-                    super(TestMissingFIELD_LISTChoiceManager, self).__init__()
+                    super().__init__()
 
             class TestMissingFIELD_LISTChoice:
                 pk = 0

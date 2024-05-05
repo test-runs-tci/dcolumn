@@ -17,7 +17,7 @@ from django.conf import settings
 class TestDecorators(TestCase):
 
     def __init__(self, name):
-        super(TestDecorators, self).__init__(name)
+        super().__init__(name)
 
     def test_dcolumn_login_required(self):
         """

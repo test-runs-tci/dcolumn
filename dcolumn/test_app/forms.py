@@ -48,7 +48,7 @@ class TestBookForm(CollectionBaseFormMixin):
         required=False)
 
     def __init__(self, *args, **kwargs):
-        super(TestBookForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         log.debug("TestBookForm args: %s, kwargs: %s", args, kwargs)
         self.fields['test_choice'].choices = (
             Author.objects.get_choices('name'))
@@ -101,7 +101,7 @@ class TestBookForm(CollectionBaseFormMixin):
         return obj
 
     def clean(self):
-        cleaned_data = super(TestBookForm, self).clean()
+        cleaned_data = super().clean()
         log.debug("cleaned_data: %s", cleaned_data)
         return cleaned_data
 

@@ -52,7 +52,7 @@ class UserModelMixin(models.Model):
         :param args: Positional arguments.
         :param kwargs: Keyword arguments.
         """
-        super(UserModelMixin, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def updater_producer(self):
         """
@@ -122,7 +122,7 @@ class TimeModelMixin(models.Model):
 
         log.debug("kwargs: %s, created: %s, updated: %s",
                   kwargs, self.created, self.updated)
-        super(TimeModelMixin, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
 
 #
@@ -170,7 +170,7 @@ class StatusModelMixin(models.Model):
         :param args: Positional arguments.
         :param kwargs: Keyword arguments.
         """
-        super(StatusModelMixin, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
 
 #
@@ -189,4 +189,4 @@ class ValidateOnSaveMixin(models.Model):
         :param kwargs: Keyword arguments.
         """
         self.full_clean()
-        super(ValidateOnSaveMixin, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)

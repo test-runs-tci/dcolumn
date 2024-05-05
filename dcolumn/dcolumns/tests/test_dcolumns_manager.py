@@ -33,7 +33,7 @@ class CountryManager(BaseChoiceManager):
     FIELD_LIST = ['pk', 'name', 'language',]
 
     def __init__(self):
-        super(CountryManager, self).__init__()
+        super().__init__()
 
 
 class Country:
@@ -55,10 +55,10 @@ class InvalidChoice:
 class TestManager(BaseDcolumns, TestCase):
 
     def __init__(self, name):
-        super(TestManager, self).__init__(name)
+        super().__init__(name)
 
     def setUp(self):
-        super(TestManager, self).setUp()
+        super().setUp()
 
     def test_manager_object_methods(self):
         """

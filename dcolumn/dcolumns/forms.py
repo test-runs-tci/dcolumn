@@ -38,7 +38,7 @@ class CollectionBaseFormMixin(forms.ModelForm):
         The constructor sets up the proper field HTML object.
         """
         self.request = kwargs.pop('request', None)
-        super(CollectionBaseFormMixin, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.coll_name = ''
         self.relations = {}
         log.debug("CollectionBaseFormMixin fields: %s, data: %s",
@@ -74,7 +74,7 @@ class CollectionBaseFormMixin(forms.ModelForm):
         Run validation on models that inherit ``CollectionBase``.
         :rtype: The Django ``cleaned_data`` dict.
         """
-        cleaned_data = super(CollectionBaseFormMixin, self).clean()
+        cleaned_data = super().clean()
 
         try:
             self.relations = ColumnCollection.objects.serialize_columns(
@@ -92,7 +92,7 @@ class CollectionBaseFormMixin(forms.ModelForm):
         ``KeyValue`` objects related to it.
         :param commit: If ``True`` the record is saved else not saved.
         """
-        inst = super(CollectionBaseFormMixin, self).save(commit=False)
+        inst = super().save(commit=False)
         request = self.initial.get('request')
         data = dict(self.cleaned_data)
         error = False
@@ -159,7 +159,7 @@ class ColumnCollectionAdminForm(forms.ModelForm):
             initial = kwargs.get('initial', {})
             self.request = initial.get('request')
 
-        super(ColumnCollectionAdminForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         log.debug("args: %s, kwargs: %s", args, kwargs)
         columns = ColumnCollection.objects.get_column_collection(
             self.instance.related_model, unassigned=True)
@@ -196,7 +196,7 @@ class KeyValueAdminForm(forms.ModelForm):
         """
         The constructor sets up the proper field HTML object.
         """
-        super(KeyValueAdminForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         log.debug("args: %s, kwargs: %s", args, kwargs)
 
         if hasattr(self.instance, 'collection'):
@@ -228,7 +228,7 @@ class DynamicColumnAdminForm(forms.ModelForm):
             initial = kwargs.get('initial', {})
             self.request = initial.get('request')
 
-        super(DynamicColumnAdminForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.fields['location'] = forms.ChoiceField(
             widget=forms.Select, choices=dcolumn_manager.css_containers)
         self.fields['relation'] = forms.ChoiceField(

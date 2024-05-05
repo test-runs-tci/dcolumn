@@ -61,7 +61,7 @@ class JSONResponseMixin:
 ##         :type form: Django's form object.
 ##         :rtype: Result from Django's ``form_valid`` or a JSON string.
 ##         """
-##         response = super(AjaxableResponseMixin, self).form_invalid(form)
+##         response = super().form_invalid(form)
 
 ##         if self.request.is_ajax():
 ##             return JsonResponse(form.errors, status=422)
@@ -80,7 +80,7 @@ class JSONResponseMixin:
 ##         # We make sure to call the parent's form_valid() method because
 ##         # it might do some processing (in the case of CreateView, it will
 ##         # call form.save() for example).
-##         response = super(AjaxableResponseMixin, self).form_valid(form)
+##         response = super().form_valid(form)
 
 ##         if self.request.is_ajax():
 ##             return JsonResponse(self.get_data(**{}))

@@ -39,4 +39,4 @@ class UserAdminMixin(admin.ModelAdmin):
             obj.creator = request.user
 
         obj.updater = request.user
-        super(UserAdminMixin, self).save_model(request, obj, form, change)
+        super().save_model(request, obj, form, change)

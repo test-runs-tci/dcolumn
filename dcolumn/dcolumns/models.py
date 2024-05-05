@@ -175,7 +175,7 @@ class DynamicColumn(TimeModelMixin, UserModelMixin, StatusModelMixin,
         """
         Be sure the complete MRO has their saves called.
         """
-        super(DynamicColumn, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return "{} ({})".format(
@@ -353,7 +353,7 @@ class ColumnCollection(TimeModelMixin, UserModelMixin, StatusModelMixin,
         """
         Be sure the complete MRO has their saves called.
         """
-        super(ColumnCollection, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return "{}-{}".format(self.name, self.related_model)
@@ -526,14 +526,14 @@ class CollectionBase(TimeModelMixin, UserModelMixin, StatusModelMixin):
                     "for all Collections."))
 
     def __init__(self, *args, **kwargs):
-        super(CollectionBase, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.__save_deferred = []
 
     def save(self, *args, **kwargs):
         """
         Be sure the complete MRO has their saves called.
         """
-        super(CollectionBase, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def serialize_key_values(self, by_slug=False):
         """
@@ -904,7 +904,7 @@ class KeyValue(ValidateOnSaveMixin):
         log.debug("KeyValue pk: %s,  collection: %s, dynamic_column: %s, "
                   "value: %s, args: %s, kwargs: %s", self.pk, self.collection,
                   self.dynamic_column, self.value, args, kwargs)
-        super(KeyValue, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.dynamic_column.name

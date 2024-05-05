@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # example_site/books/views.py
 #
@@ -68,7 +69,7 @@ class BookDetailView(LoginRequiredMixin,
         """
         Get context data for the KeyValue objects.
         """
-        context = super(BookDetailView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         # Create actions if any.
         book = kwargs.get('object')
         pk = book and book.id or 0
@@ -152,7 +153,7 @@ class PublisherDetailView(LoginRequiredMixin,
         """
         Get context data for the KeyValue objects.
         """
-        context = super(PublisherDetailView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         # Create actions if any.
         publisher = kwargs.get('object')
         pk = publisher and publisher.id or 0
@@ -236,7 +237,7 @@ class AuthorDetailView(LoginRequiredMixin,
         """
         Get context data for the KeyValue objects.
         """
-        context = super(AuthorDetailView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         # Create actions if any.
         author = kwargs.get('object')
         pk = author and author.id or 0
@@ -321,7 +322,7 @@ class PromotionDetailView(LoginRequiredMixin,
         """
         Get context data for the KeyValue objects.
         """
-        context = super(PromotionDetailView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         # Create actions if any.
         promotion = kwargs.get('object')
         pk = promotion and promotion.id or 0

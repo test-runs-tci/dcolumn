@@ -91,13 +91,13 @@ class ViewMixinTest(ContextDataMixin):
 class TestAutoDisplay(BaseDcolumns, TestCase):
 
     def __init__(self, name):
-        super(TestAutoDisplay, self).__init__(name)
+        super().__init__(name)
 
     def setUp(self):
-        super(TestAutoDisplay, self).setUp()
+        super().setUp()
 
     def tearDown(self):
-        super(TestAutoDisplay, self).tearDown()
+        super().tearDown()
 
     def _setup_template(self, model, object=None, prefix=None, options=None,
                         display=None, except_test=False, invalid_kwargs=None,
@@ -599,13 +599,13 @@ class TestAutoDisplay(BaseDcolumns, TestCase):
 class TestSingleDisplay(BaseDcolumns, TestCase):
 
     def __init__(self, name):
-        super(TestSingleDisplay, self).__init__(name)
+        super().__init__(name)
 
     def setUp(self):
-        super(TestSingleDisplay, self).setUp()
+        super().setUp()
 
     def tearDown(self):
-        super(TestSingleDisplay, self).tearDown()
+        super().tearDown()
 
     def _setup_template(self, model, object, slug, delimiter='as',
                         context_name=None, object_name='object'):
@@ -863,10 +863,10 @@ class TestSingleDisplay(BaseDcolumns, TestCase):
 class TestCombineContexts(BaseDcolumns, TestCase):
 
     def __init__(self, name):
-        super(TestCombineContexts, self).__init__(name)
+        super().__init__(name)
 
     def setUp(self):
-        super(TestCombineContexts, self).setUp()
+        super().setUp()
 
     def _setup_template(self, model, object, obj, variable, extra_arg=''):
         # Setup the context.

@@ -150,7 +150,7 @@ class CollectionAJAXView(JSONResponseMixin, TemplateView, ContextDataMixin):
         """
         Django view dispatch decorated for login requierments.
         """
-        return super(CollectionAJAXView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     def render_to_response(self, context, **response_kwargs):
         # Remove the view object--it cannot be serialized and we don't
@@ -200,8 +200,7 @@ class CollectionCreateUpdateViewMixin(ContextDataMixin):
         """
         Get context data for the ``KeyValue`` objects.
         """
-        context = super(CollectionCreateUpdateViewMixin, self
-                        ).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context.update(self.get_dynamic_column_context_data(**kwargs))
         context.update(self.get_relation_context_data(
             obj=self.object, **kwargs))
@@ -221,8 +220,7 @@ class CollectionDetailViewMixin(ContextDataMixin):
         """
         Get context data for the ``KeyValue`` objects.
         """
-        context = super(
-            CollectionDetailViewMixin, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context.update(self.get_dynamic_column_context_data(**kwargs))
         context.update(self.get_relation_context_data(
             obj=self.object, **kwargs))

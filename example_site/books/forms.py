@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # example_site/books/forms.py
 #
@@ -37,7 +38,7 @@ class PromotionForm(CollectionBaseFormMixin):
         required=False)
 
     def __init__(self, *args, **kwargs):
-        super(PromotionForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         log.debug("PromotionForm args: %s, kwargs: %s", args, kwargs)
         # Get rid of the annoying colon after every label.
         self.label_suffix = ''
@@ -67,7 +68,7 @@ class AuthorForm(CollectionBaseFormMixin):
         required=False)
 
     def __init__(self, *args, **kwargs):
-        super(AuthorForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         log.debug("AuthorForm args: %s, kwargs: %s", args, kwargs)
         # Get rid of the annoying colon after every label.
         self.label_suffix = ''
@@ -104,7 +105,7 @@ class PublisherForm(CollectionBaseFormMixin):
         required=False)
 
     def __init__(self, *args, **kwargs):
-        super(PublisherForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         log.debug("PublisherForm args: %s, kwargs: %s", args, kwargs)
         # Get rid of the annoying colon after every label.
         self.label_suffix = ''
@@ -150,7 +151,7 @@ class BookForm(CollectionBaseFormMixin):
         required=False)
 
     def __init__(self, *args, **kwargs):
-        super(BookForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         log.debug("BookForm args: %s, kwargs: %s", args, kwargs)
         self.fields['author'].choices = Author.objects.get_choices('name')
         self.fields['publisher'].choices = Publisher.objects.get_choices(

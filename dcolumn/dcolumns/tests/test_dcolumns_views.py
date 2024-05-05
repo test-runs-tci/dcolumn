@@ -26,11 +26,11 @@ class TestCollectionAJAXView(BaseDcolumns, TestCase):
     _TEST_PASSWORD = 'TestPassword_007'
 
     def __init__(self, name):
-        super(TestCollectionAJAXView, self).__init__(name)
+        super().__init__(name)
         self.client = None
 
     def setUp(self):
-        super(TestCollectionAJAXView, self).setUp()
+        super().setUp()
         self.client = self._set_user_auth()
 
     def _set_user_auth(self, username=_TEST_USERNAME,

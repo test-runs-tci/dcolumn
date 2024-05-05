@@ -1,7 +1,7 @@
+# -*- coding: utf-8 -*-
 #
 # example_site/books/models.py
 #
-from __future__ import unicode_literals
 
 import logging
 
@@ -42,7 +42,7 @@ class Promotion(CollectionBase, ValidateOnSaveMixin):
         verbose_name_plural = _("Promotions")
 
     def save(self, *args, **kwargs):
-        super(Promotion, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -76,7 +76,7 @@ class Author(CollectionBase, ValidateOnSaveMixin):
         verbose_name_plural = _("Authors")
 
     def save(self, *args, **kwargs):
-        super(Author, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -110,7 +110,7 @@ class Publisher(CollectionBase, ValidateOnSaveMixin):
         verbose_name_plural = _("Publishers")
 
     def save(self, *args, **kwargs):
-        super(Publisher, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -144,7 +144,7 @@ class Book(CollectionBase, ValidateOnSaveMixin):
         verbose_name_plural = _("Books")
 
     def save(self, *args, **kwargs):
-        super(Book, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

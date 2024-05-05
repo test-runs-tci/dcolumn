@@ -17,7 +17,7 @@ from .test_dcolumns_manager import Country
 class TestChoices(TestCase):
 
     def __init__(self, name):
-        super(TestChoices, self).__init__(name)
+        super().__init__(name)
 
     def test_model_objects(self):
         """

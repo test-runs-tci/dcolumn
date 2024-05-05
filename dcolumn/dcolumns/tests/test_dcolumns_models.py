@@ -23,7 +23,7 @@ from .base_tests import BaseDcolumns
 class TestDynamicColumn(BaseDcolumns, TestCase):
 
     def __init__(self, name):
-        super(TestDynamicColumn, self).__init__(name)
+        super().__init__(name)
 
     def test_get_fk_slugs(self):
         """
@@ -183,7 +183,7 @@ class TestDynamicColumn(BaseDcolumns, TestCase):
 class TestColumnCollection(BaseDcolumns, TestCase):
 
     def __init__(self, name):
-        super(TestColumnCollection, self).__init__(name)
+        super().__init__(name)
 
     def test_process_dynamic_columns(self):
         """
@@ -354,7 +354,7 @@ class TestColumnCollection(BaseDcolumns, TestCase):
 class TestCollectionBase(BaseDcolumns, TestCase):
 
     def __init__(self, name):
-        super(TestCollectionBase, self).__init__(name)
+        super().__init__(name)
 
     def test_serialize_columns(self):
         """
@@ -1039,7 +1039,7 @@ class TestCollectionBase(BaseDcolumns, TestCase):
 class TestKeyValue(BaseDcolumns, TestCase):
 
     def __init__(self, name):
-        super(TestKeyValue, self).__init__(name)
+        super().__init__(name)
 
     def test_str_value(self):
         """

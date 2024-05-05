@@ -25,11 +25,11 @@ log = logging.getLogger('tests.dcolumns.forms')
 class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
 
     def __init__(self, name):
-        super(TestCollectionBaseFormMixin, self).__init__(name)
+        super().__init__(name)
         self.client = None
 
     def setUp(self):
-        super(TestCollectionBaseFormMixin, self).setUp()
+        super().setUp()
         self.client = Client()
         self.client.force_login(self.user)
         self.dc0 = self._create_dynamic_column_record(
@@ -77,7 +77,7 @@ class TestCollectionBaseFormMixin(BaseDcolumns, TestCase):
 
     def tearDown(self):
         self.client.logout()
-        super(TestCollectionBaseFormMixin, self).tearDown()
+        super().tearDown()
 
     def test_proper_configuration(self):
         """
