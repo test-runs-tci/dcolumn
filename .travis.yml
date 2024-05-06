@@ -19,7 +19,7 @@ env:
   - PGUSER=travis
 
 before_script:
-  - psql -U postgres template1 -f db/create_schema.ddl
+  - psql -U travis template1 -f db/create_schema.ddl
 
 # Command to install dependencies
 install: "pip install -r requirements/travis.txt"
